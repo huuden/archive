@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f3f1ec">
+  <meta name="theme-color" content="#0e0e0d">
   <title>アーカイブサイト</title>
   <script>
-    // 前回えらんだ「白/黒」を、表示の前に反映する(ちらつき防止)
+    // 最初は「黒」。前回「白」をえらんだ人だけ白にする(表示の前に反映して、ちらつきを防ぐ)
+    document.documentElement.dataset.theme = "dark";
     try {
-      if (localStorage.getItem("archive-theme") === "dark") {
-        document.documentElement.dataset.theme = "dark";
-        document.querySelector('meta[name="theme-color"]').content = "#0e0e0d";
+      if (localStorage.getItem("archive-theme") === "light") {
+        delete document.documentElement.dataset.theme;
+        document.querySelector('meta[name="theme-color"]').content = "#f3f1ec";
       }
     } catch (e) {}
   </script>
@@ -354,8 +355,8 @@
         </div>
         <div class="seg" role="group" aria-label="背景の色">
           <span class="mono" aria-hidden="true">Tone</span>
-          <button type="button" data-theme-choice="light" aria-pressed="true">白</button>
-          <button type="button" data-theme-choice="dark" aria-pressed="false">黒</button>
+          <button type="button" data-theme-choice="light" aria-pressed="false">白</button>
+          <button type="button" data-theme-choice="dark" aria-pressed="true">黒</button>
         </div>
       </div>
     </div>
